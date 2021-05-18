@@ -34,8 +34,6 @@ unless marked otherwise.
 - Bit Field Instructions (`bitmanip.bitfield`)
   - `pack`, `packu` (16, 32, and 64 bit)
   - `bset`, `bclr`, `binv`, `bext`
-  - `bfp` (not yet implemented)
-  - `bcompress`, `bdecompress` (not yet implemented)
 - Bit Permutation Instructions (`bitmanip.permutation`)
   - `grev`
   - `gorc`
