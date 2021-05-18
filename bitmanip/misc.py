@@ -76,26 +76,62 @@ def sexth64(n: int) -> int:
 def sextw64(n: int) -> int:
     return util.sext(n, 32, 64)
 
-def slo32(n: int, r: int) -> int:
-    return util.bits(~base.sll32(~n, r), 32)
+def cmix32(n1: int, n2: int, n3: int) -> int:
+    return util.bits((n2 & n1) | (n3 & ~n1), 32)
 
-def slo64(n: int, r: int) -> int:
-    return util.bits(~base.sll64(~n, r), 64)
+def cmix64(n1: int, n2: int, n3: int) -> int:
+    return util.bits((n2 & n1) | (n3 & ~n1), 64)
 
-def sro32(n: int, r: int) -> int:
-    return util.bits(~base.srl32(~n, r), 32)
+def clmul32(n1: int, n2: int) -> int:
+    n1 = util.bits(n1, 32)
+    n2 = util.bits(n2, 32)
+    x = 0
+    for i in range(32):
+        if (n2 >> i) & 1:
+            x ^= util.bits(n1 << i, 32)
+    return x
 
-def sro64(n: int, r: int) -> int:
-    return util.bits(~base.srl64(~n, r), 64)
+def clmul64(n1: int, n2: int) -> int:
+    n1 = util.bits(n1, 64)
+    n2 = util.bits(n2, 64)
+    x = 0
+    for i in range(64):
+        if (n2 >> i) & 1:
+            x ^= util.bits(n1 << i, 64)
+    return x
 
-def rol32(n: int, r: int) -> int:
-    return base.sll32(n, r) | base.srl32(n, 32 - r)
+def clmulh32(n1: int, n2: int) -> int:
+    n1 = util.bits(n1, 32)
+    n2 = util.bits(n2, 32)
+    x = 0
+    for i in range(1, 32):
+        if (n2 >> i) & 1:
+            x ^= n1 >> (32 - i)
+    return x
 
-def rol64(n: int, r: int) -> int:
-    return base.sll64(n, r) | base.srl64(n, 64 - r)
+def clmulh64(n1: int, n2: int) -> int:
+    n1 = util.bits(n1, 64)
+    n2 = util.bits(n2, 64)
+    x = 0
+    for i in range(1, 64):
+        if (n2 >> i) & 1:
+            x ^= n1 >> (32 - i)
+    return x
 
-def ror32(n: int, r: int) -> int:
-    return base.srl32(n, r) | base.sll32(n, 32 - r)
+def clmulr32(n1: int, n2: int) -> int:
+    n1 = util.bits(n1, 32)
+    n2 = util.bits(n2, 32)
+    x = 0
+    for i in range(32):
+        if (n2 >> i) & 1:
+            x ^= n1 >> (32 - i - 1)
+    return x
 
-def ror64(n: int, r: int) -> int:
-    return base.srl64(n, r) | base.sll64(n, 64 - r)
+def clmulr64(n1: int, n2: int) -> int:
+    n1 = util.bits(n1, 64)
+    n2 = util.bits(n2, 64)
+    x = 0
+    for i in range(64):
+        if (n2 >> i) & 1:
+            x ^= n1 >> (32 - i - 1)
+    return x

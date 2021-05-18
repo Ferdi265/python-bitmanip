@@ -69,4 +69,3 @@ def bext64(n: int, b: int) -> int:
     n = util.bits(n, 64)
     b = util.bits(n, 6)
     return (n >> b) & 1
-
