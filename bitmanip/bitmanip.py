@@ -391,3 +391,48 @@ shfl64.zip2    = util.bind23(shfl64, 0b11110, 0)
 shfl64.unzip2  = util.bind23(shfl64, 0b11110, 1)
 shfl64.zip     = util.bind23(shfl64, 0b11111, 0)
 shfl64.unzip   = util.bind23(shfl64, 0b11111, 1)
+
+def xperm32r(n1: int, n2: int, r: int) -> int:
+    n1 = util.bits(n1, 32)
+    n2 = util.bits(n2, 32)
+    r = r % 5
+    m = util.mask(r)
+    x = 0
+    for i in range(0, 32, 1 << r):
+        pos = ((n2 >> i) & m) << r
+        if pos < 32:
+            x |= ((n1 >> pos) & m) << i
+    return x
+
+def xpermn32(n1: int, n2: int) -> int:
+    return xperm32r(n1, n2, 2)
+
+def xpermb32(n1: int, n2: int) -> int:
+    return xperm32r(n1, n2, 3)
+
+def xpermh32(n1: int, n2: int) -> int:
+    return xperm32r(n1, n2, 4)
+
+def xperm64r(n1: int, n2: int, r: int) -> int:
+    n1 = util.bits(n1, 64)
+    n2 = util.bits(n2, 64)
+    r = r % 6
+    m = util.mask(r)
+    x = 0
+    for i in range(0, 64, 1 << r):
+        pos = ((n2 >> i) & m) << r
+        if pos < 64:
+            x |= ((n1 >> pos) & m) << i
+    return x
+
+def xpermn64(n1: int, n2: int) -> int:
+    return xperm64r(n1, n2, 2)
+
+def xpermb64(n1: int, n2: int) -> int:
+    return xperm64r(n1, n2, 3)
+
+def xpermh64(n1: int, n2: int) -> int:
+    return xperm64r(n1, n2, 4)
+
+def xpermw64(n1: int, n2: int) -> int:
+    return xperm64r(n1, n2, 5)
