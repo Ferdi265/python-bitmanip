@@ -8,7 +8,7 @@ with open("bitmanip/version.py", "r") as f:
 
 setup(
     name = "bitmanip",
-    description = "bit manipulation functions based on RISC-V BitManip extension",
+    description = "bit manipulation functions based on the RISC-V BitManip extension",
     version = __version__,
     author = "Ferdinand Bachmann",
     author_email = "theferdi265@gmail.com",

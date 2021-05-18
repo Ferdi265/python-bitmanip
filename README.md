@@ -1,6 +1,6 @@
 # Python `bitmanip`
 
-Bit manipulation functions based on RISC-V BitManip extension
+Bit manipulation functions based on the RISC-V BitManip extension
 
 ## Implemented Functions
 
