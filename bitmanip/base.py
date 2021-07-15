@@ -22,16 +22,16 @@ def and64(n1: int, n2: int) -> int:
     return util.bits(n1, 64) & util.bits(n2, 64)
 
 def or32(n1: int, n2: int) -> int:
-    return util.bits(n1, 32) & util.bits(n2, 32)
+    return util.bits(n1, 32) | util.bits(n2, 32)
 
 def or64(n1: int, n2: int) -> int:
-    return util.bits(n1, 64) & util.bits(n2, 64)
+    return util.bits(n1, 64) | util.bits(n2, 64)
 
 def xor32(n1: int, n2: int) -> int:
-    return util.bits(n1, 32) & util.bits(n2, 32)
+    return util.bits(n1, 32) ^ util.bits(n2, 32)
 
 def xor64(n1: int, n2: int) -> int:
-    return util.bits(n1, 64) & util.bits(n2, 64)
+    return util.bits(n1, 64) ^ util.bits(n2, 64)
 
 def sll32(n: int, r: int) -> int:
     return util.bits(util.bits(n, 32) << util.bits(r, 5), 32)
